@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location de Voitures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        #voitures-disponibles {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .voiture {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            width: 30%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .voiture img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #formulaire-reservation {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #message {
+            margin-top: 10px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Location de Voitures Premium</h1>
+        <p>Réservez votre voiture en ligne dès maintenant !</p>
+    </header>
+
+    <section id="voitures-disponibles">
+        <h2>Voitures Disponibles</h2>
+        <div class="voiture">
+            <img src="https://via.placeholder.com/300x200?text=Voiture+1" alt="Voiture 1">
+            <h3>Sedan Économique</h3>
+            <p>Prix : 50 €/jour</p>
+        </div>
+        <div class="voiture">
+            <img src="https://via.placeholder.com/300x200?text=Voiture+2" alt="Voiture 2">
+            <h3>SUV Luxe</h3>
+            <p>Prix : 80 €/jour</p>
+        </div>
+        <div class="voiture">
+            <img src="https://via.placeholder.com/300x200?text=Voiture+3" alt="Voiture 3">
+            <h3>Coupé Sport</h3>
+            <p>Prix : 100 €/jour</p>
+        </div>
+    </section>
+
+    <section id="formulaire-reservation">
+        <h2>Réserver une Voiture</h2>
+        <form id="reservation-form">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" required>
+
+            <label for="voiture">Choisir une voiture :</label>
+            <select id="voiture" required>
+                <option value="">Sélectionnez</option>
+                <option value="sedan">Sedan Économique</option>
+                <option value="suv">SUV Luxe</option>
+                <option value="coupe">Coupé Sport</option>
+            </select>
+
+            <label for="date-debut">Date de début :</label>
+            <input type="date" id="date-debut" required>
+
+            <label for="date-fin">Date de fin :</label>
+            <input type="date" id="date-fin" required>
+
+            <button type="submit">Réserver</button>
+        </form>
+        <p id="message"></p>
+    </section>
+
+    <script>
+        document.getElementById('reservation-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche l'envoi réel du formulaire
+
+            const nom = document.getElementById('nom').value;
+            const email = document.getElementById('email').value;
+            const voiture = document.getElementById('voiture').value;
+            const dateDebut = document.getElementById('date-debut').value;
+            const dateFin = document.getElementById('date-fin').value;
+
+            if (nom && email && voiture && dateDebut && dateFin) {
+                document.getElementById('message').textContent = 'Réservation confirmée pour ' + nom + ' ! Un email a été envoyé à ' + email + '.';
+                // Réinitialiser le formulaire
+                this.reset();
+            } else {
+                document.getElementById('message').textContent = 'Veuillez remplir tous les champs.';
+                document.getElementById('message').style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
